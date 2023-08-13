@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { MdKeyboardAlt, MdSend } from "react-icons/md";
 import socketIo from "socket.io-client";
-// import { user } from "../join/join";
+import { user } from "../join/join";
 import "./chat.css";
 
 const ENDPOINT = "http://localhost:4500/";
@@ -26,8 +26,15 @@ const Chat = () => {
   const socket = socketIo(ENDPOINT, { transports: ['websocket'] });
   useEffect(() => {
     socket.on('connect', () => {
-      // alert("connected");
+      alert("connected");
     })
+
+    socket.emit('joined', {user});
+
+    socket.on("Welcome", (data) => {
+      console.log(data.user, data.message);
+    })
+
 
     return () => {
 
@@ -38,7 +45,7 @@ const Chat = () => {
     <div className="chatPage">
       <div className="chatContainer">
         <div className="header"></div>
-        <div className="chatBox"></div>
+        <div className="chatBox">{user}</div>
 
         <div className="inputBox">
           {/* <MdKeyboardAlt id="keyboardIcon"/> */}
