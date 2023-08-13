@@ -1,0 +1,83 @@
+.chatPage {
+    background-color: rgb(31, 29, 29);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatContainer {
+    background-color: #fff;
+    height: 50%;
+    width: 50%;
+}
+
+.header {
+    background-color: crimson;
+    height: 15%;
+    box-sizing: border-box;
+}
+
+.chatBox {
+    border: 0.2rem solid #333;
+    height: 70%;
+    box-sizing: border-box;
+}
+
+.inputBox {
+    border: .2vmax solid black;
+    height: 15%;
+    padding: 0px .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inputBox #inputText {
+    width: 88%;
+    height: 40px;
+    border-radius: 20px 5px 5px 20px;
+    padding: 0px 10px;
+    overflow-wrap: break-word;
+    font-size: 1.5rem;
+    outline: none;
+}
+
+.inputBox #sendBtn {
+    height: 40px;
+    width: 8%;
+    border-radius: 5px;
+    padding: 7px;
+    background-color: crimson;
+    color: #fff;
+    
+}
+
+.inputBox #sendBtn:hover {
+    border-radius: 5px solid crimson;
+    background-color: #fff;
+}
+
+.inputBox #sendBtn #sendIcon {
+    display: block;
+    width: 100%;
+    font-size: 1.5rem;
+    transition: .3s all;
+}
+
+.inputBox #sendBtn #sendIcon:hover {
+    color: crimson;
+    cursor: pointer;
+    transform: translateX(8px);
+}
+/* svg {
+    position: absolute;
+    left: 26%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+} */
