@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { MdKeyboardAlt, MdSend } from "react-icons/md";
 import socketIo from "socket.io-client";
 import { user } from "../join/join";
 import "./chat.css";
+import Message from "../Message/Message";
 
+let socket;
 const ENDPOINT = "http://localhost:4500/";
 
 const Chat = () => {
+  const [id, setid] = useState("");
+  const send = () => {
+    const message = document.getElementById('inputText').value;
+    socket.emit("message", {message, id});
+    document.getElementById('inputText').value = "";
+  }
 
   // const svgIcon = () => {
   //   let input = document.getElementById("inputText");
@@ -24,9 +32,10 @@ const Chat = () => {
 
 
   useEffect(() => {
-    const socket = socketIo(ENDPOINT, { transports: ['websocket'] });
+    socket = socketIo(ENDPOINT, { transports: ['websocket'] });
     socket.on('connect', () => {
       alert("connected");
+      setid(socket.id);
     })
 
     socket.emit('joined', { user });
@@ -50,16 +59,31 @@ const Chat = () => {
     }
 
   }, []);
+
+  useEffect(() => {
+    socket.on('sendMessage', (data)=> {
+      console.log(data.user, data.message, data.id);
+    })
+  
+    return () => {
+      
+    }
+  }, [])
+  
   return (
     <div className="chatPage">
       <div className="chatContainer">
         <div className="header"></div>
-        <div className="chatBox">{user}</div>
+        <div className="chatBox">
+          <Message message={"Hey Wassup buddy..."}/>
+          <Message message={"Hey Wassup buddy..."}/>
+          
+        </div>
 
         <div className="inputBox">
           {/* <MdKeyboardAlt id="keyboardIcon"/> */}
           <input otype="text" id="inputText" placeholder=" Your message..." />
-          <button id="sendBtn"><MdSend id="sendIcon" /></button>
+          <button onClick={send} id="sendBtn"><MdSend id="sendIcon" /></button>
         </div>
       </div>
     </div>

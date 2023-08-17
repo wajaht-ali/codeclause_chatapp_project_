@@ -30,9 +30,14 @@ io.on("connection", (socket) => {
         socket.emit('Welcome', { user: "Admin", message: "Welcome to chatiFy" });
     })
 
+    socket.on("message", ({message, id}) => {
+
+        io.emit("sendMessage", {user:users[id], message, id})
+    });
+
     socket.on('offline', () => {
-        socket.broadcast.emit("leave", {user: "Admin", message: "user has left"} );
-        console.log("User left");
+        socket.broadcast.emit("leave", {user: "Admin", message: `${users[socket.id]} has left`} );
+        // console.log("User left");
     })
 
 });
