@@ -23,24 +23,33 @@ const Chat = () => {
   //   }
 
 
-  const socket = socketIo(ENDPOINT, { transports: ['websocket'] });
   useEffect(() => {
+    const socket = socketIo(ENDPOINT, { transports: ['websocket'] });
     socket.on('connect', () => {
       alert("connected");
     })
 
-    socket.emit('joined', {user});
+    socket.emit('joined', { user });
 
     socket.on("Welcome", (data) => {
+      console.log(data.message);
+    })
+
+    socket.on("userJoined", (data) => {
+      console.log(data.message);
+    })
+
+    socket.on('leave', (data) => {
       console.log(data.user, data.message);
     })
 
 
     return () => {
-
+      socket.emit('offline');
+      socket.off();
     }
 
-  }, [socket]);
+  }, []);
   return (
     <div className="chatPage">
       <div className="chatContainer">
@@ -49,8 +58,8 @@ const Chat = () => {
 
         <div className="inputBox">
           {/* <MdKeyboardAlt id="keyboardIcon"/> */}
-          <input  otype="text" id="inputText" placeholder=" Your message..."/>
-          <button id="sendBtn"><MdSend id="sendIcon"/></button>
+          <input otype="text" id="inputText" placeholder=" Your message..." />
+          <button id="sendBtn"><MdSend id="sendIcon" /></button>
         </div>
       </div>
     </div>
