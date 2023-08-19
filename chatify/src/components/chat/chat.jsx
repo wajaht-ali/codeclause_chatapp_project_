@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { MdKeyboardAlt, MdSend } from "react-icons/md";
+import { MdSend } from "react-icons/md";
 import socketIo from "socket.io-client";
 import { user } from "../join/join";
 import "./chat.css";
@@ -12,7 +12,7 @@ const ENDPOINT = "http://localhost:4500/";
 
 const Chat = () => {
   const [id, setid] = useState("");
-  const [messages, setMessages] = useState([1,2,3,4])
+  const [messages, setMessages] = useState([])
   const send = () => {
     const message = document.getElementById('inputText').value;
     socket.emit("message", {message, id});
@@ -43,14 +43,17 @@ const Chat = () => {
     socket.emit('joined', { user });
 
     socket.on("Welcome", (data) => {
+      setMessages([...messages, data]);
       console.log(data.message);
     })
 
     socket.on("userJoined", (data) => {
+      setMessages([...messages, data]);
       console.log(data.message);
     })
 
     socket.on('leave', (data) => {
+      setMessages([...messages, data]);
       console.log(data.user, data.message);
     })
 
@@ -60,17 +63,18 @@ const Chat = () => {
       socket.off();
     }
 
-  }, []);
+  });
 
   useEffect(() => {
     socket.on('sendMessage', (data)=> {
+      setMessages([...messages, data]);
       console.log(data.user, data.message, data.id);
     })
   
     return () => {
       
     }
-  }, [])
+  })
   
   return (
     <div className="chatPage">
@@ -78,7 +82,7 @@ const Chat = () => {
         <div className="header"></div>
         <ReactScrollToBottom className="chatBox">
           {
-            messages.map((item, index) => <Message message = {item}/>)
+            messages.map((item, index) => <Message message = {item.message} classs={'right'}/>)
           }
         </ReactScrollToBottom>
 
