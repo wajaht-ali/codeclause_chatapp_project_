@@ -15,6 +15,5 @@
 }
 .left {
     float: left;
-    background-color: rgba(184, 255, 194);
-    color: white;
+    background-color: rgb(184, 255, 194);
 }

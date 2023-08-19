@@ -5,12 +5,14 @@ import socketIo from "socket.io-client";
 import { user } from "../join/join";
 import "./chat.css";
 import Message from "../Message/Message";
+import ReactScrollToBottom from "react-scroll-to-bottom";
 
 let socket;
 const ENDPOINT = "http://localhost:4500/";
 
 const Chat = () => {
   const [id, setid] = useState("");
+  const [messages, setMessages] = useState([1,2,3,4])
   const send = () => {
     const message = document.getElementById('inputText').value;
     socket.emit("message", {message, id});
@@ -74,11 +76,11 @@ const Chat = () => {
     <div className="chatPage">
       <div className="chatContainer">
         <div className="header"></div>
-        <div className="chatBox">
-          <Message message={"Hey Wassup buddy..."}/>
-          <Message message={"Hey Wassup buddy..."}/>
-          
-        </div>
+        <ReactScrollToBottom className="chatBox">
+          {
+            messages.map((item, index) => <Message message = {item}/>)
+          }
+        </ReactScrollToBottom>
 
         <div className="inputBox">
           {/* <MdKeyboardAlt id="keyboardIcon"/> */}
