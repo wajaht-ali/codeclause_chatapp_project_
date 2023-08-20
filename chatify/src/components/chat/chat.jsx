@@ -91,7 +91,7 @@ const Chat = () => {
 
         <div className="inputBox">
           {/* <MdKeyboardAlt id="keyboardIcon"/> */}
-          <input otype="text" id="inputText" placeholder=" Your message..." />
+          <input otype="text" onKeyPress={(event) => event.key === "Enter" ? send(): null} id="inputText" placeholder=" Your message..." />
           <button onClick={send} id="sendBtn"><MdSend id="sendIcon" /></button>
         </div>
       </div>

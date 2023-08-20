@@ -62,6 +62,7 @@
     font-size: 1.2vmax;
     background-color: crimson;
     /* margin: 2vmax; */
+    /* padding-top: 3rem; */
     color: #fff;
     font-family: "Roboto", 'sans-serif';
     font-weight: 500;
@@ -70,4 +71,37 @@
 #joinBtn:hover {
     cursor: pointer;
     background-color: rgb(239, 70, 104);
+}
+
+@media(max-width: 550px) {
+    .joinContainer {
+        border: 2px solid #fff;
+        height: 80%;
+        width: 80%;
+        display: flex;
+        padding-top: 5rem;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px #fff;
+    }
+
+    img {
+        /* position: relative;
+        top: 50%; */
+        margin-top: 5vmax;
+    }
+
+    #joinInput {
+        width: 30vmax;
+        padding: 1rem;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        margin: 1.5vmax;
+        box-sizing: border-box;
+    }
+    #joinBtn {
+        font-size: 1rem;
+    }
 }
