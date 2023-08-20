@@ -6,7 +6,7 @@ const socket = require('dgram');
 // const user = require("../chatify/src/components/join/join");
 
 const app = express();
-const port = 4500 || process.env.PORT;
+const port = process.env.PORT;
 const users = [{}];
 
 app.use(cors());
