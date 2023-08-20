@@ -1,7 +1,7 @@
 .messageBox {
     width: 50%;
     /* height: 1vmax; */
-    padding: 1rem;
+    padding: .8rem;
     margin: 1.8vmax;
     border-radius: .5vmax;
     display: inline-block;
@@ -12,8 +12,90 @@
     float: right;
     background-color: crimson;
     color: white;
+    position: relative;
 }
+.right::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: crimson;
+    top: 10%;
+    left: 98%;
+    transform: rotate(45deg);
+    z-index: 1;
+    /* content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: crimson;
+    top: 5%;
+    left: 93%;
+    transform: rotate(30deg);
+    z-index: 1; */
+}
+
 .left {
     float: left;
     background-color: rgb(184, 255, 194);
+    position: relative;
+}
+.left::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(184, 255, 194);
+    top: 12%;
+    right: 98%;
+    transform: rotate(45deg);
+    z-index: 1;
+}
+
+@media(max-width: 450px) {
+    .messageBox {
+        width: 65%;
+        /* height: 1vmax; */
+        /* padding: 1rem;
+        margin: 1.8vmax;
+        border-radius: .5vmax;
+        display: inline-block;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    }
+    .right {
+        float: right;
+        background-color: crimson;
+        color: white;
+        position: relative;
+    }
+
+    .right::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: crimson;
+    top: 10%;
+    right: 92%;
+    transform: rotate(45deg);
+    z-index: 1;
+    }
+
+    .left {
+        float: left;
+        background-color: rgb(184, 255, 194);
+        position: relative;
+    }
+
+    .left::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(184, 255, 194);
+    top: 7%;
+    right: 98%;
+    transform: rotate(45deg);
+    z-index: 1;
+    }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { MdSend } from "react-icons/md";
+import { MdSend, MdClose } from "react-icons/md";
 import socketIo from "socket.io-client";
 import { user } from "../join/join";
 import "./chat.css";
@@ -63,7 +63,7 @@ const Chat = () => {
       socket.off();
     }
 
-  });
+  }, []);
 
   useEffect(() => {
     socket.on('sendMessage', (data)=> {
@@ -72,17 +72,20 @@ const Chat = () => {
     })
   
     return () => {
-      
+      socket.off();
     }
-  })
+  }, [messages])
   
   return (
     <div className="chatPage">
       <div className="chatContainer">
-        <div className="header"></div>
+        <div className="header">
+          <h2>ChatiFy</h2>
+          <a href="/"><MdClose /></a>
+        </div>
         <ReactScrollToBottom className="chatBox">
           {
-            messages.map((item, index) => <Message message = {item.message} classs={'right'}/>)
+            messages.map((item, index) => <Message user={item.id === id ? '': item.user} message = {item.message} classs={item.id === id ? 'right': 'left'}/>)
           }
         </ReactScrollToBottom>
 

@@ -9,14 +9,46 @@
 
 .chatContainer {
     background-color: #fff;
-    height: 50%;
-    width: 50%;
+    height: 80%;
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #fff;
 }
 
 .header {
     background-color: crimson;
     height: 15%;
+    /* padding: 1.5rem; */
     box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header>h2 {
+    margin: 1.5rem;
+}
+.header>a>svg {
+    margin: 1.5rem;
+    color: #fff;
+}
+
+.header svg {
+    color: #fff;
+    padding: .5rem;
+    font-size: 2rem;
+    transition: all .3s;
+}
+
+.header svg:hover {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    /* padding: .5rem; */
+    cursor: pointer;
+    color: crimson;
+    transform: scale(1);
 }
 
 .chatBox {
@@ -24,13 +56,16 @@
     height: 70%;
     box-sizing: border-box;
     /* overflow-y: auto; */
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #333;
     
 }
 
 .inputBox {
-    border: .2vmax solid black;
+    /* border: .2vmax solid black; */
     height: 15%;
-    padding: 0px .5rem;
+    padding: 0px .3rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -39,16 +74,18 @@
 
 .inputBox #inputText {
     width: 88%;
-    height: 40px;
-    border-radius: 20px 5px 5px 20px;
-    padding: 0px 10px;
-    overflow-wrap: break-word;
-    font-size: 1.5rem;
+    height: 50px;
+    /* border-radius: 20px 5px 5px 20px; */
+    padding: 0px 5px;
+    /* overflow-wrap: break-word; */
+    /* text-overflow: clip; */
+    overflow-y: scroll;
+    font-size: 1rem;
     outline: none;
 }
 
 .inputBox #sendBtn {
-    height: 40px;
+    height: 45px;
     width: 8%;
     border-radius: 5px;
     padding: 7px;
@@ -58,8 +95,8 @@
 }
 
 .inputBox #sendBtn:hover {
-    border-radius: 5px solid crimson;
-    background-color: #fff;
+    border-radius: 5px solid #fff;
+    /* background-color: #fff; */
 }
 
 .inputBox #sendBtn #sendIcon {
@@ -70,7 +107,7 @@
 }
 
 .inputBox #sendBtn #sendIcon:hover {
-    color: crimson;
+    color: #fff;
     cursor: pointer;
     transform: translateX(8px);
 }
@@ -83,3 +120,74 @@
     justify-content: center;
     margin: 5px;
 } */
+
+@media(max-width: 450px) {
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .chatPage {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* margin-right: 10%; */
+    }
+    
+    .chatContainer {
+        background-color: #fff;
+        height: 80%;
+        width: 80%;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px #fff;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header>h2 {
+        margin: 5px;
+    }
+    .header a>svg {
+        margin: 5px;
+    }
+
+    .chatBox {
+        border: 0.2rem solid #333;
+        height: 70%;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid #333;
+    }
+
+    .inputBox #inputText {
+        width: 80%;
+        height: 50px;
+        /* border-radius: 20px 5px 5px 20px; */
+        padding: 0px 5px;
+        /* overflow-wrap: break-word; */
+        /* text-overflow: clip; */
+        overflow-y: scroll;
+        font-size: 1rem;
+        outline: none;
+    }
+    
+    .inputBox #sendBtn {
+        height: 55px;
+        width: 20%;
+        border-radius: 5px;
+        padding: 7px;
+        background-color: crimson;
+        color: #fff;
+        
+    }
+}

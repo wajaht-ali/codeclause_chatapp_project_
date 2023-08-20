@@ -11,7 +11,7 @@ const users = [{}];
 
 app.use(cors());
 app.get("/", (req, res) => {
-    res.send("Hell IS Working.");
+    res.send("Hellow, it's working.");
 })
 
 
@@ -27,7 +27,7 @@ io.on("connection", (socket) => {
         users[socket.id] = user;
         console.log(`${user} has joined`);
         socket.broadcast.emit('userJoined', { user: "Admin", message: `${users[socket.id]} has joined` });
-        socket.emit('Welcome', { user: "Admin", message: "Welcome to chatiFy" });
+        socket.emit('Welcome', { user: "Admin", message: `Welcome to chatiFy ${user}` });
     })
 
     socket.on("message", ({message, id}) => {
@@ -36,9 +36,13 @@ io.on("connection", (socket) => {
     });
 
     socket.on('offline', () => {
-        socket.broadcast.emit("leave", {user: "Admin", message: `${users[socket.id]} has left`} );
+        const user = users[socket.id];
+        if(user) {
+            delete users[socket.id];
+            socket.broadcast.emit("leave", {user: "Admin", message: `${user} has left`} );
+        }
         // console.log("User left");
-    })
+    });
 
 });
 server.listen(port, () => {
